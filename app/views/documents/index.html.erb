@@ -1,0 +1,36 @@
+<%= flash[:notice] %>
+<div class="container card mt-5 mb-5">
+    <div class="card-body">
+        <h2 class="text-center"> Listing Employee Documents </h2>
+
+    </div>
+</div>
+
+<div class="container">
+    <%= link_to "Create new Document", new_document_path, class:" btn btn-primary mb-4 "%>
+</div>
+<table class="container table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Document type</th>
+            <th>Employee ID</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% @documents.each do |document| %>
+            <tr>
+                <td><%= document.name %></td>
+                <td><%= document.doc_type %></td>
+                <td><%= document.emp.first_name %></td>
+                <td>
+                    <%= link_to "Edit", edit_document_path(document), class: "btn btn-primary" %>
+                    <%= link_to "View", document_path(document), class: "btn btn-info" %>
+                    <%= link_to "Delete", document_path(document), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure to delete this document'} %>
+                </td>
+            </tr>
+        <% end %>
+
+    </tbody>
+</table>
